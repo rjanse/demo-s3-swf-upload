@@ -2,12 +2,10 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.xml
   def index
-    @posts = Post.find(:all)
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @posts }
-    end
+    @selected_file = params[:selected_file]
+    @check = params[:q]
+
   end
 
   # GET /posts/1

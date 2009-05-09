@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :posts
 
   map.resources :s3_uploads
-  map.root :controller=>'posts', :action=>:new
+  map.root :controller=>'posts', :action=>:index
   
   # The priority is based upon order of creation: first created -> highest priority.
 

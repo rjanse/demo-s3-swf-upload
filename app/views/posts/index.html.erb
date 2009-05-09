@@ -1,18 +1,39 @@
-<h1>Listing posts</h1>
+<h1>Form for Uploading a file to s3</h1>
 
-<table>
-  <tr>
-  </tr>
+<% form_tag(posts_path, :method => "get", :id=>"theform") do %>  
+<%= label_tag(:q, "Type something into this form:") %>  
+<%= text_field_tag(:q) %>  
+<%= hidden_field_tag(:selected_file, nil, :id=>"selectedFile") %>
 
-<% for post in @posts %>
-  <tr>
-    <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<p>
+Last time the form entry was <%= @check %>
+</p>
+
+<div class="main">
+<%= s3_swf_upload_tag(
+        :width => 488, 
+        :height => 50, 
+        :success => "alert('succeeded');document.getElementById('selectedFile').value=filename; document.getElementById('theform').submit();",
+        :failed => 'alert("failed");',
+        :selected => 'alert(filename + " selected - OK!");',
+        :canceled => 'alert("canceled");',
+        :prefix => '',
+        :upload => 'Submit',
+        :initial_message=> 'Your message about file...')
+  %>
+	<br />
+	Maximum file size: <%= S3SwfUpload::S3Config.max_file_size/1024.0/1024.0 %>MB
+	<hr />
+</div>
 <% end %>
-</table>
 
-<br />
+<% if @selected_file %>
+<p>
 
-<%= link_to 'New post', new_post_path %>
+The file that was uploaded last time, <%=h @selected_file %>, can be
+found <%= link_to("here",
+	  "http://s3.amazonaws.com/#{S3SwfUpload::S3Config.bucket}/#{@selected_file}")
+	  %>
+<p>
+<% end %>
+

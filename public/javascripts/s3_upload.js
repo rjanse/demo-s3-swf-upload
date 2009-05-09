@@ -17,7 +17,8 @@ function s3_swf_init(id, options)
   onSuccess       = (options.onSuccess == undefined) ? function(){} : options.onSuccess
   onFailed        = (options.onFailed == undefined) ? function(){} : options.onFailed
   onCancel        = (options.onCancel == undefined) ? function(){} : options.onCancel
-  
+  initialMessage =  (options.initialMesasage == undefined) ? function(){} : options.initialMessage
+
   var params = {
 	wmode: "transparent"
   };
@@ -32,7 +33,7 @@ function s3_swf_init(id, options)
     onSuccess: onSuccess,
     onFailed: onFailed,
     onSelected: onFileSelected, 
-    onCancel: onCancel
+    onCancel: onCancel,
   }
 
   return(s3_swf);
