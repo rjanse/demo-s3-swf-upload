@@ -2,7 +2,7 @@ module S3SwfUpload
   class S3Config
     require 'yaml'
 
-    cattr_reader :access_key_id, :secret_access_key, 
+    cattr_reader :access_key_id, :secret_access_key
     cattr_accessor :bucket, :max_file_size, :acl
 
     def self.load_config
