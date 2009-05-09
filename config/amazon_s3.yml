@@ -1,7 +1,7 @@
 development:
-  bucket_name: demo_bucket
-  access_key_id: secret
-  secret_access_key: super_secret
+  bucket_name: test-zips.greenasjade.net
+  access_key_id: AKIAI3Y5C5VCJ2TEKVVQ
+  secret_access_key: Kf9fRWCc636vWTVGEUSXMpbeKotdMldW8hwyGD1Ca
   max_file_size: 10485760
        
 test:
@@ -11,7 +11,8 @@ test:
   max_file_size: 1048576
   
 production:
-  bucket_name: production_bucket
-  access_key_id: 
-  secret_access_key: 
-  max_file_size: 1048576
+  bucket_name: test-zips.greenasjade.net
+  access_key_id: AKIAI3Y5C5VCJ2TEKVVQ
+  secret_access_key: Kf9fRWCc636vWTVGEUSXMpbeKotdMldW8hwyGD1Ca
+  max_file_size: 10485760
+
