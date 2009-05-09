@@ -44,7 +44,7 @@ module S3SwfUpload
           Please <a href="http://www.adobe.com/go/getflashplayer">Update</a> your Flash Player to Flash v9.0.1 or higher...
         </div>
 
-        <div class="s3-swf-upload-link>
+        <div class="s3-swf-upload-link">
         <a href="#" onclick="s3_swf#{@count}.upload('#{prefix}')">#{upload}</a>
         </div>
       )

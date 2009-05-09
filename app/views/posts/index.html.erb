@@ -1,15 +1,21 @@
 <h1>Form for uploading a file to s3, with other info for your app...</h1>
 
+<div class=main>
+
 <% form_tag(posts_path, :method => "get", :id=>"theform") do %>  
 <%= label_tag(:q, "Type something into this form:") %>  
 <%= text_field_tag(:q) %>  
 <%= hidden_field_tag(:selected_file, nil, :id=>"selectedFile") %>
 
 <p>
-Last time the form entry was <%= @check %>
+<% if @check && @check != "" %>
+(Last time the form entry was <%= @check %>)
+<% end %>
+</p>
+<p>
+Select a file to upload (Maximum file size: <%= S3SwfUpload::S3Config.max_file_size/1024.0/1024.0 %>MB)
 </p>
 
-<div class="main">
 <%= s3_swf_upload_tag(
         :width => 488, 
         :height => 50, 
@@ -20,11 +26,9 @@ Last time the form entry was <%= @check %>
         :upload => 'Submit',
         :initial_message=> 'Your message about file...')
   %>
-	<br />
-	Maximum file size: <%= S3SwfUpload::S3Config.max_file_size/1024.0/1024.0 %>MB
-	<hr />
-</div>
+
 <% end %>
+</div>
 
 <% if @selected_file %>
 <p>
