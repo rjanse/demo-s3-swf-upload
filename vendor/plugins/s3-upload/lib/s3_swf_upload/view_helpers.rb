@@ -15,12 +15,7 @@ module S3SwfUpload
       @count ||= 1
       
       out = ""
-      out << %(
-        <div id="s3_swf#{@count}">
-          Please <a href="http://www.adobe.com/go/getflashplayer">Update</a> your Flash Player to Flash v9.0.1 or higher...
-        </div>
-      )
-      
+
       if !@include_s3_upload
         out << '<script type="text/javascript" src="/javascripts/s3_upload.js"></script>' 
         @include_s3_upload = true
@@ -44,6 +39,12 @@ module S3SwfUpload
         </script>
 
         <a href="#" onclick="s3_swf#{@count}.upload('#{prefix}/')">#{upload}</a>
+      )
+      
+      out << %(
+        <div id="s3_swf#{@count}">
+          Please <a href="http://www.adobe.com/go/getflashplayer">Update</a> your Flash Player to Flash v9.0.1 or higher...
+        </div>
       )
       
       @count += 1
