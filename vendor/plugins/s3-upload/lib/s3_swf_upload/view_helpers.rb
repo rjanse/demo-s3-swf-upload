@@ -11,6 +11,8 @@ module S3SwfUpload
       upload     = options[:upload] || 'Upload' 
       initial_message    = options[:initial_message] || 'Select file to upload...'
 
+      prefix = prefix + "/" unless prefix == ""
+
       @include_s3_upload = false # let's not do this for now.
       @count ||= 1
       
@@ -38,7 +40,7 @@ module S3SwfUpload
             });
         </script>
 
-        <a href="#" onclick="s3_swf#{@count}.upload('#{prefix}/')">#{upload}</a>
+        <a href="#" onclick="s3_swf#{@count}.upload('#{prefix}')">#{upload}</a>
       )
       
       out << %(

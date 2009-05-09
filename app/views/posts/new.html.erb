@@ -4,16 +4,15 @@
 <%= s3_swf_upload_tag(
         :width => 488, 
         :height => 50, 
-        :success => "alert('succeeded');",
+        :success => "alert('succeeded with ' + filename);",
         :failed => 'alert("failed");',
         :selected => 'alert(filename + " selected - OK!");',
         :canceled => 'alert("canceled");',
-        :prefix => 'CMBO',
+        :prefix => '',
         :upload => '<br>Submit',
         :initial_message=> 'Your message about file...')
   %>
 	<br />
 	Maximum file size: <%= S3SwfUpload::S3Config.max_file_size/1024.0/1024.0 %>MB
 	<hr />
- 	The file will be uploaded to the s3 but you won't have access to it.
 </div>
