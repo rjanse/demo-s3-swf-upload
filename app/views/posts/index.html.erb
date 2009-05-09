@@ -7,7 +7,6 @@
 <%= text_field_tag(:q) %>  
 <%= hidden_field_tag(:selected_file, nil, :id=>"selectedFile") %>
 
-<p>
 <% if @check && @check != "" %>
 (Last time the form entry was <%= @check %>)
 <% end %>
@@ -28,15 +27,16 @@ Select a file to upload (Maximum file size: <%= S3SwfUpload::S3Config.max_file_s
   %>
 
 <% end %>
-</div>
-
 <% if @selected_file %>
 <p>
 
 The file that was uploaded last time, <%=h @selected_file %>, can be
-found <%= link_to("here",
+found on s3 <%= link_to("here",
 	  "http://s3.amazonaws.com/#{S3SwfUpload::S3Config.bucket}/#{@selected_file}")
 	  %>
 <p>
 <% end %>
+
+</div>
+
 

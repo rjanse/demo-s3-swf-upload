@@ -13,7 +13,7 @@ module S3SwfUpload
 
       prefix = prefix + "/" unless prefix == ""
 
-      @include_s3_upload = false # let's not do this for now.
+      @include_s3_upload ||= false 
       @count ||= 1
       
       out = ""
