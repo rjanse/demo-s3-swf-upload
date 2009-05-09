@@ -12,7 +12,9 @@
 <% end %>
 </p>
 <p>
-Select a file to upload (Maximum file size: <%= S3SwfUpload::S3Config.max_file_size/1024.0/1024.0 %>MB)
+Select a file to upload (Maximum file size set to :
+<%= (S3SwfUpload::S3Config.max_file_size/1024.0/1024.0).to_i %>MB just to
+stop craziness :) )
 </p>
 
 <%= s3_swf_upload_tag(
