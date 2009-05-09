@@ -31,7 +31,7 @@
 			
 			private function browser():void {
 			    this.fileReference = new FileReference();
-			    textInput.setStyle("color","#222222");
+			    userMessage.setStyle("color","#222222");
 			    // setup file reference event handlers
 			    fileReference.addEventListener(Event.CANCEL, function(event:Event):void {
 			        // TODO: cancel the upload.
@@ -40,7 +40,7 @@
 			    fileReference.addEventListener(Event.SELECT, function(event:Event):void {
 			        // set options.FileName
 			        options.FileName = fileReference.name.replace(/^.*(\\|\/)/gi, '').replace(/[^A-Za-z0-9\.\-]/gi, '_');
-			        textInput.text   = options.FileName;
+			        userMessage.text   = options.FileName;
 			        
 			        // set options:FileSize
 			        options.FileSize = fileReference.size.toString();
@@ -61,8 +61,8 @@
 			    
 			    // return if user has not selected any file
 			    if (options.FileSize == null) {
-			    	trace(options.onSuccessCall);
-			        ExternalInterface.call(options.onSuccessCall);
+			    	trace(options.onFailedCall);
+			        ExternalInterface.call(options.onFailedCall);
 			        return;
 			    }
 			    
@@ -114,12 +114,10 @@
 				{
 				 	uploadProgressBar.visible = false;
 				  	selectButton.visible = true;
-					textInput.visible = true;
-				  	textInput.text = "Error: " + xml.errorMessage;
-					textInput.setStyle("color","#770000");
-					ExternalInterface.call(options.onSuccessCall);
-					//Application.application.statusBar.status = "Hello World..."; 
-					//throw new Error("Error: " + xml.errorMessage);
+					userMessage.visible = true;
+				  	userMessage.text = "Error: " + xml.errorMessage;
+					userMessage.setStyle("color","#770000");
+					ExternalInterface.call(options.onFailedCall);
 					return;
 				}
 			    // ===================== //
@@ -128,7 +126,7 @@
 			    var request:S3UploadRequest = new S3UploadRequest(options);
 			    
 			    request.addEventListener(Event.OPEN, function(event:Event):void {
-			        textInput.text = "";
+			        userMessage.text = "";
 			        uploadProgressBar.visible = true;
 			        selectButton.visible = false;
 			        trace(event);
@@ -141,7 +139,7 @@
 			    request.addEventListener(IOErrorEvent.IO_ERROR, function(event:IOErrorEvent):void {
 			        uploadProgressBar.visible = false;
 			        selectButton.visible = true;
-			        textInput.text = "Upload Error, please retry.";
+			        userMessage.text = "Upload Error, please retry.";
 			        trace(options.onFailedCall);
 			        ExternalInterface.call(options.onFailedCall);
 			        trace(event);
@@ -149,7 +147,7 @@
 			    request.addEventListener(SecurityErrorEvent.SECURITY_ERROR, function(event:SecurityErrorEvent):void {
 			        uploadProgressBar.visible = false;
 			        selectButton.visible = true;
-			        textInput.text = "Upload error, Access denied.";
+			        userMessage.text = "Upload error, Access denied.";
 			        trace(options.onFailedCall);
 			        ExternalInterface.call(options.onFailedCall);
 			        trace(event);
@@ -157,7 +155,7 @@
 			    request.addEventListener(DataEvent.UPLOAD_COMPLETE_DATA, function(event:Event):void {
 			        uploadProgressBar.visible = false;
 			        //selectButton.visible = true;
-			        textInput.text = "Upload complete!";
+			        userMessage.text = "Upload complete!";
 			        trace(options.onSuccessCall);
 			        ExternalInterface.call(options.onSuccessCall, options.FileName);
 			        trace(event);
@@ -168,8 +166,8 @@
 			    } catch(e:Error) {
 			        uploadProgressBar.visible = false;
 			        selectButton.visible = true;
-			        textInput.text = "" + e;
-					textInput.setStyle("color","#770000");
+			        userMessage.text = "" + e;
+				userMessage.setStyle("color","#770000");
 			        trace("An error occurred: " + e);
 			    }
 			}
@@ -193,7 +191,7 @@
     	]]>
     </mx:Script>
     
-    <mx:Label x="100" y="10" id="textInput" color="#222222" fontSize="12" text=""/>
+    <mx:Label x="100" y="10" id="userMessage" color="#222222" fontSize="12" text=""/>
     <mx:Button x="10" y="7" label="Browse..." click="browser()" id="selectButton"/>
     <mx:ProgressBar x="1" y="7" width="486" height="20" labelPlacement="center" id="uploadProgressBar" visible="false" mode="manual" label="Uploading..."/>
     
