@@ -1,4 +1,4 @@
-<h1>Form for Uploading a file to s3</h1>
+<h1>Form for uploading a file to s3, with other info for your app...</h1>
 
 <% form_tag(posts_path, :method => "get", :id=>"theform") do %>  
 <%= label_tag(:q, "Type something into this form:") %>  
@@ -13,10 +13,9 @@ Last time the form entry was <%= @check %>
 <%= s3_swf_upload_tag(
         :width => 488, 
         :height => 50, 
-        :success => "alert('succeeded');document.getElementById('selectedFile').value=filename; document.getElementById('theform').submit();",
+        :success => "alert('succeeded uploading ' + filename);document.getElementById('selectedFile').value=filename; document.getElementById('theform').submit();",
         :failed => 'alert("failed");',
         :selected => 'alert(filename + " selected - OK!");',
-        :canceled => 'alert("canceled");',
         :prefix => '',
         :upload => 'Submit',
         :initial_message=> 'Your message about file...')

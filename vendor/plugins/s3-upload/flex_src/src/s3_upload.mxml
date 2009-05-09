@@ -21,8 +21,12 @@
 			    }
 			}
 			
-			private function init(url:String, onSuccess:String="", onFailed:String="", onSelected:String="", onCancel:String=""):void {
+			private function init(url:String,
+			    onSuccess:String="", onFailed:String="",
+			    onSelected:String="", onCancel:String="", 
+                            initialMessage:String=""):void {
 			    options.SignatureQueryURL = url;
+                            userMessage.text = initialMessage;
 			    if (onSuccess  != "") { options.onSuccessCall  = onSuccess;  }
 			    if (onFailed   != "") { options.onFailedCall   = onFailed;   }
 			    if (onSelected != "") { options.onSelectedCall = onSelected; }
