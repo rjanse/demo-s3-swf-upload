@@ -1,10 +1,23 @@
 == S3 Upload Demo
 
-This is a rails 2.2.2 application that uploads a file to the amazon s3 using the s3-swf-upload-plugin by ELC.
+This is a rails 2.2.2 application that uploads a file to the amazon s3
+using the GreenAsJade fork version of the s3-swf-upload-plugin by ELC.
+
 
 To use 
 
-1. Put your credentials into the config/amazon_s3.yml file.
+0. Clone it over, do what you need to do to activate it as a rails app.
+ 
+    > mkdir db; rake db:migrate 
+   
+   is probably enough.
+
+1. Set your amazon credentials, as per the README
 
 2. Upload a crossdomain.xml in your bucket and make it public-read.
+
+3. ./script/server
+
+4  Surf to localhost:3000
+
 
