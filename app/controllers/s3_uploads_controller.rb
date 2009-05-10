@@ -1,6 +1,12 @@
 require 'base64'
 
 class S3UploadsController < ApplicationController
+  
+  # --- no code for modification below here ---
+
+  # Sigh.  OK that's not completely true - you might want to look at https and expiration_date below.
+  #        Possibly these should also be configurable from S3Config...
+
   skip_before_filter :verify_authenticity_token
   include S3SwfUpload::Signature
   
@@ -27,11 +33,9 @@ class S3UploadsController < ApplicationController
         ['eq', '$success_action_status', '201']
     ]
 }").gsub(/\n|\r/, '')
-    
-    puts Base64.decode64(policy)
-    
+
     signature = b64_hmac_sha1(S3SwfUpload::S3Config.secret_access_key, policy)
-    
+
     respond_to do |format|
       format.xml {
         render :xml => {
