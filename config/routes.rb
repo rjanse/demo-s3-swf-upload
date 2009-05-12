@@ -3,6 +3,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :s3_uploads
 
+  map.resources :s3_uploads
+
   map.resources :posts
 
   map.resources :s3_uploads
