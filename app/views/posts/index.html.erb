@@ -1,8 +1,14 @@
 <h1>Example of use of s3-swf-upload-plugin </h1>
-(<%= link_to ("GreenAsJade's fork",
-     "http://github.com/GreenAsJade/s3-swf-upload-plugin/tree/master")
-     %>) 
 <h2> This shows a form for uploading a file to s3, along with fields for other info for your app...</h2>
+
+<p>
+The version of s3_swf_upload_plugin used here is <%= link_to ("GreenAsJade's fork",
+     "http://github.com/GreenAsJade/s3-swf-upload-plugin/tree/master")
+     %>.
+<p>
+The source of this app is available at <%= link_to("github",
+					   "http://github.com/GreenAsJade/demo-s3-swf-upload/tree/master")
+					   %>
 
 <div class=main>
 
@@ -16,16 +22,16 @@
 <% end %>
 </p>
 <p>
-Select a file to upload (Maximum file size set to :
+Select a file to upload:<br> (Maximum file size set to :
 <%= (S3SwfUpload::S3Config.max_file_size/1024.0/1024.0).to_i %>MB just to
-stop craziness :) )
+stop craziness, but you can set it to whatever you like :) )
 </p>
 
 <%= s3_swf_upload_tag(
         :width => 488, 
         :height => 50, 
         :success => "alert('succeeded uploading ' + filename);document.getElementById('selectedFile').value=filename; document.getElementById('theform').submit();",
-        :failed => 'alert("failed");',
+        :failed => 'alert("failed");', 
         :selected => 'alert(filename + " selected - OK!");',
         :prefix => '',
         :upload => 'Submit',
