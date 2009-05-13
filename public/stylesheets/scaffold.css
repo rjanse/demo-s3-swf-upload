@@ -12,8 +12,13 @@ pre {
   font-size: 11px;
 }
 
-a:visited { color: #fff; }
-a:hover { color: #fff;  }
+a { color: #0; }
+
+a:visited {color: #0}
+
+.main a {color: #fff; }
+.main  a:visited { color: #fff; }
+.main a:hover { color: #fff;  }
 
 .main { color:#d7d7d7;
 padding: 15px;
