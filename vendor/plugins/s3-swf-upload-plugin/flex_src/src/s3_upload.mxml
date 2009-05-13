@@ -71,6 +71,8 @@
 			        return;
 			    }
 			    
+                            userMessage.text = 'Initiating...';
+
 			    // ======================== //
 			    // Start Query S3 Signature //
 			    // ======================== //
